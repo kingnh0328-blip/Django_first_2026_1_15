@@ -1,0 +1,46 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+._.DS_Store
+**/.DS_Store
+
+# Database
+db.sqlite3
+*.sqlite3
+
+# User-specific files
+.bash_history
+.python_history
+.lesshst
+.CFUserTextEncoding
+.gitconfig
+.viminfo
+.zsh_history
+
+# macOS
+Desktop/
+Documents/
+Downloads/
+Library/
+Movies/
+Music/
+Pictures/
+Public/
+.streamlit/
+.ssh/
