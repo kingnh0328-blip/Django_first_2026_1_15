@@ -1,0 +1,34 @@
+<!-- # 블락요소(전체를 다 감싸는 것, 글씨 추가할 수 없음) -->
+<h1>최근질문</h1>
+<!-- 인라인 요소, 인라인 스케이트처럼 옆에 태그가 붙을 수 있음 -->
+<a>a 태그입니다.</a>
+<div>div 태그입니다.</div>
+<p>p태그입니다.</p>
+<ul>ul 태그입니다.</ul>
+<li>li 태그입니다.</li>
+
+<h1>1번 문제: "aa화면이 보이니?"</h1>
+
+<h1> 2번 문제: 최근 질문</h1>
+<p>{{ latest_question_list }}</p>
+
+<h1>3번 문제: 데이터 꺼내기</h1>
+<!-- 문법으로 불러오고 싶을 때는 반드시 양 끝에 % 붙어야 함! ex. if for url 링크 문법 사용하는 경우 -->
+ <!-- 변수 부를 때는 중복 중괄호를 사용해서 변수를 부른다-->
+<ul>{% for question in latest_question_list %}
+    <li> {{question}}</li>
+    <li> {{question.id}}</li>
+    question_text는 models.py에서 호출한 것
+    <li> {{question_text}}</li>
+    question.question_text는 views.py애서 호출한 것
+    <li> {{question.question_text}}</li>
+    {% endfor %}
+</ul>
+
+<h1>4번 문제: choice 전체 꺼내기</h1>
+<p>{% for choice in choice_list %}
+        <li>{{choice.choice_text}}</li>
+{% endfor %}
+</p>
+
+<h3>5번 문제: choice 하나씩 꺼내기</h3>
