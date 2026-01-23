@@ -4,7 +4,7 @@ from .models import Question, Choice # models.py에서 불러옴 -> view.py(매�
 from django.views import generic
 from django.db.models import F
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 
 # index(최신글 list)
@@ -89,3 +89,20 @@ def vote(request, question_id):
 #     # 3. html에 context를 넘겨주기
 #     return render(request, 'polls/aa.html', context)
 
+# CRUD - Create
+class QuestionCreateView(generic.CreateView):
+    model = Question
+    fields = ["question_text", "pub_date"]
+    template_name = "polls/question_form.html"
+    success_url = reverse_lazy("polls:index")
+
+class QuestionUpdateView(generic.UpdateView):
+    model = Question
+    fields = ["question_text", "pub_date"]
+    template_name = "polls/question_form.html"
+    success_url = reverse_lazy("polls:index")
+
+class QuestionDeleteView(generic.DeleteView):
+    model = Question
+    template_name = "polls/question_confirm_delete.html"
+    success_url = reverse_lazy("polls:index")
