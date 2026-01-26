@@ -1,0 +1,14 @@
+{% extends "polls/base.html" %}
+{% load static %} 
+{% block content %}
+<h2>회원가입</h2>
+<form method="post" class="auth-form"> 
+<!-- class는 꾸며주기 위한 기능 -->
+ {% csrf_token %} 
+ {{ form.as_p }}
+ <button type="submit">가입</button>
+ <!-- 전송버튼 만들어서 이동시키기 -->
+</form>
+<a href="{% url 'login' %}">이미 계정이 있으신가요?</a>
+<!-- 이미 계정이 있는 경우 다른 url로 이동 -->
+{% endblock %}

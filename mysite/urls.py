@@ -6,6 +6,9 @@ urlpatterns = [
     # http://127.0.0.1:8000/polls/
     path('admin/', admin.site.urls),
     # http://127.0.0.1:8000/admin/
+    path("accounts/", include("accounts.urls")),
+    # http://127.0.0.1:8000/accounts/
+    path("accounts/", include("django.contrib.auth.urls")),
     
 ]
 
