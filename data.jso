@@ -1,0 +1,19 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$GqxhCjLOcjQabG5rNPyXvn$iPNT1t/v2yD43DtKzgjgA2S6sbWPi68VqhvStbFpk70=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "김나현",
+    "first_name": "",
+    "last_name": "",
+    "email": "kingnh0328@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-01-27T00:55:33.044Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
