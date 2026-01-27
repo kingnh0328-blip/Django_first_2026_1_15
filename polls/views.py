@@ -6,6 +6,13 @@ from django.db.models import F
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
+import datetime
+
+def _parse_yyyy_mm_dd(value: str):
+    try:
+        return datetime.date.fromisoformat(value)
+    except (TypeError, ValueError):
+        return None
 
 # index(최신글 list)
 # def index(request):
@@ -19,6 +26,38 @@ class IndexView(generic.ListView): # 일반적으로 .이 붙어있으면 상속
     context_object_name = "latest_question_list" 
 
     def get_queryset(self):
+        qs = Question.objects.all()
+
+        # 1) show=future → 미래 질문 포함 여부 (기본: 미래 숨김)
+        show = self.request.GET.get("show")
+        if show != "future": # "future와 다르다면"
+            qs = qs.filter(pub_date__lte=timezone.now()) 
+            # get_queryset 함수에서 지정한 qs 변수보다 들여쓰기 하게 되면 지역변수가 되어 먼저 반영하게 됨!!
+            
+        # 2) q=키워드 → question_text 검색
+        q = (self.request.GET.get("q") or "").strip()
+        if q:
+            qs = qs.filter(question_text__icontains=q)
+
+        # 3) start/end=YYYY-MM-DD → 기간 필터
+        start = _parse_yyyy_mm_dd(self.request.GET.get("start"))
+        end = _parse_yyyy_mm_dd(self.request.GET.get("end"))
+
+        if start:
+            qs = qs.filter(pub_date__date__gte=start)
+        if end:
+            qs = qs.filter(pub_date__date__lte=end)
+
+        # 4) order=oldest → 정렬 (기본: 최신순)
+        order = self.request.GET.get("order")
+        if order == "oldest":
+            qs = qs.order_by("pub_date")
+        else:
+            qs = qs.order_by("-pub_date")
+
+        # 5) (옵션) 목록 5개 제한 유지
+        return qs[:5]
+
         return Question.objects.filter (pub_date__lte=timezone.now()).order_by("-pub_date")[:5]
 
 

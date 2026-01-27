@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from . import views, practice_views
 
 app_name = "polls"
 
@@ -39,4 +39,17 @@ urlpatterns = [
     # generic에 UpdateView를 상속받아서 Class(글 삭제 기능) 구현
     # URL polls:question_delete 템플릿(HTML)에서 링크 형태로 호출
     
+    # 연습용 (브라우저 확인)
+    path("practice/1/", practice_views.practice_1, name="practice_1"),
+    path("practice/2/", practice_views.practice_2, name="practice_2"),
+    path("practice/3/", practice_views.practice_3, name="pracitce_3"),
+    path("practice/4/", practice_views.practice_4, name="practice_4"),
+    path("practice/5/", practice_views.practice_5, name="practice_5"),
+
+    # 연습용 (플랫폼 확인: JSON)
+    path("practice/api/1/", practice_views.practice_api_1, name="practice_api_1"),
+    path("practice/api/2/", practice_views.practice_api_2, name="practice_api_2"),
+    path("practice/api/3/", practice_views.practice_api_3, name="practice_api_3"),
+    path("practice/api/4/", practice_views.practice_api_4, name="practice_api_4"),
+    path("practice/api/5/", practice_views.practice_api_5, name="practice_api_5"),
 ]

@@ -23,9 +23,9 @@ class QuestionAdmin(admin.ModelAdmin):
         description="Published recently?",
     )
     
-    def was_published_recently(self):
+    def was_published_recently(self, obj):
         now = timezone.now()
-        return now - datetime.timedelta(days=1) <= self.pub_date <= now
+        return now - datetime.timedelta(days=1) <= obj.pub_date <= now
     
 
 # 관리자에 등록
