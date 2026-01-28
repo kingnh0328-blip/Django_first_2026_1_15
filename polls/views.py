@@ -113,8 +113,6 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
 
 
-
-
 # # aa 함수 데이터
 # def aa(request):
 #     # 1. 모델에서 데이터 불러오기
